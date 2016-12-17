@@ -10,7 +10,7 @@ class Home extends MY_Site {
         
     }
     function index(){
-        $this->data['content_page'] ='site/index';
+        $this->data['content_page'] ='site/home';
         $this->load->view('site/template',$this->data);
     }
 }
