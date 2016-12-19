@@ -1,5 +1,5 @@
 <footer>
-    <div class="ct-prefooter">
+    <div class="ct-prefooter ">
         <div class="container">
             <div class="ct-prefooter-inner ct-u-relative ct-u-paddingTop80 ct-u-paddingBottom50"><a href="#home" class="btn-toTop ct-js-btnScroll"><i class="fa fa-angle-up ct-js-btnScroll"></i></a>
                 <div class="row">
