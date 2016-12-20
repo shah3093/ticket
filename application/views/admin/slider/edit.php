@@ -1,10 +1,10 @@
 <div class="box box-info">
     <div class="box-header with-border">
-        <h3 class="box-title">Edit sports</h3>
+        <h3 class="box-title">Edit slider</h3>
     </div>
     <!-- /.box-header -->
     <!-- form start -->
-    <form class="form-horizontal" method="post" action="<?php echo base_url("admin/sports/addformdb/".$result->id); ?>"  id="frmAdd"  enctype="multipart/form-data">
+    <form class="form-horizontal" method="post" action="<?php echo base_url("admin/slider/addformdb/" . $result->id); ?>"  id="frmAdd"  enctype="multipart/form-data">
         <div class="box-body">
 
             <div class="form-group">
@@ -13,17 +13,24 @@
             </div>
 
             <div class="form-group">
-                <label for="sportsname" class="col-sm-2 control-label">Sports name <span class="redstar">*</span></label>
+                <label for="sportsname" class="col-sm-2 control-label">Caption<span class="redstar">*</span></label>
 
                 <div class="col-sm-7">
-                    <input class="form-control" value="<?php echo $result->name; ?>" name="Sports[name]" id="sportsname" placeholder="Name" type="text">
+                    <input class="form-control" value="<?php echo $result->caption; ?>" name="Image[caption]" id="sportsname" placeholder="Name" type="text">
                 </div>
             </div>
             <div class="form-group">
-                <label for="details" class="col-sm-2 control-label">Details</label>
+                <label for="details" class="col-sm-2 control-label">&nbsp;</label>
 
                 <div class="col-sm-7">
-                    <textarea name="Sports[details]" class="form-control summernote" id="details" placeholder="Details"><?php echo $result->details; ?></textarea>
+                    <img src="<?php echo base_url('asset/image/'.$result->name); ?>" style="width: 100px;height: 100px;"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="details" class="col-sm-2 control-label">Change image</label>
+
+                <div class="col-sm-7">
+                    <input type="file" name="img"  />
                 </div>
             </div>
 

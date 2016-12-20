@@ -32,6 +32,11 @@
                 </a>
             </li>
             <li class="treeview">
+                <a href="<?php echo site_url("admin/slider"); ?>">
+                    <i class="fa fa-spotify"></i> <span>Slider</span>
+                </a>
+            </li>
+            <li class="treeview">
                 <a href="#">
                     <i class="fa fa-spotify"></i> <span>Match</span>
                     <span class="pull-right-container">
