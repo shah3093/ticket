@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="details" class="col-sm-2 control-label">Change image</label>
+                <label for="details" class="col-sm-2 control-label">Change image (height 600px)</label>
 
                 <div class="col-sm-7">
                     <input type="file" name="img"  />

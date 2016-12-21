@@ -11,6 +11,8 @@ class Home extends MY_Site {
     }
 
     function index() {
+        $this->data['slidernumber'] = $this->common_model->get_num_rows('slider');
+        $this->data['sliders'] = $this->common_model->get_all_data('slider');
         $this->data['content_page'] = 'site/home';
         $this->load->view('site/template', $this->data);
     }

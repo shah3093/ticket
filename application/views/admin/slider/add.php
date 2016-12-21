@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="details" class="col-sm-2 control-label">Upload image</label>
+                <label for="details" class="col-sm-2 control-label">Upload image (height 600px)</label>
 
                 <div class="col-sm-7">
                     <input type="file" name="img"  />

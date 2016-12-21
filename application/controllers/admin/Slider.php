@@ -49,7 +49,7 @@ class Slider extends MY_Admin {
 
             //////.....For Image........///////////
             $config['upload_path'] = './asset/image';
-            $config['allowed_types'] = 'gif|jpg|jpeg|png';
+            $config['allowed_types'] = '*';
             $config['max_size'] = '4048';
             $config['overwrite'] = TRUE;
             $this->load->library('upload');
@@ -104,8 +104,7 @@ class Slider extends MY_Admin {
         $config['create_thumb'] = FALSE;
         $config['maintain_ratio'] = FALSE;
         $config['width'] = 1500;
-        $config['height'] = 700;
-        $config['quality'] = '99%';
+        $config['height'] = 500;
 
         $this->load->library('image_lib', $config);
 

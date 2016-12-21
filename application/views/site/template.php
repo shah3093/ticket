@@ -14,6 +14,7 @@
         <script src="./js/respond.min.js"></script><![endif]-->
         <script src="<?php echo base_url("template/"); ?>js/modernizr.custom.js">
         </script>
+       <link rel="stylesheet" type="text/css" href="<?php echo base_url("template/"); ?>css/custom.css">
     </head>
     <body class="cssAnimate ct-headroom--scrollUpMenu">
         <div class="ct-preloader">

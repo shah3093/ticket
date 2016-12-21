@@ -1,32 +1,37 @@
 <header id="home" class="ct-u-colorWhite text-left">
-    <div data-adaptiveHeight="true" data-animations="true" data-autoplay="true" data-infinite="true" data-autoplaySpeed="6000" data-draggable="true" data-touchMove="false" data-arrows="true" data-items="1" class="ct-slick ct-js-slick">
-        <div data-bg="<?php echo base_url('template/images/Penguins.jpg'); ?>" class="item">
-            <div class="ct-slick-inner">
-                <div class="ct-slick-content">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <h1 class="ct-textDecoration--underline ct-u-marginBottom60 ct-fw-300"><span class="ct-u-text-big text-uppercase">new</span>Get 15% off on vacations</h1>
-                                <p class="ct-u-marginBottom50">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ipsum nibh, maluit esuada a sem id, tincidunt tristique nibh. Mauris tristique velit massam, in frinui gilla turpis semper quis. Sed sagittis cursus erat, et ibendum nec.</p><a href="#packages" class="btn btn-lg btn-default btn-transparent text-uppercase ct-js-btnScroll">more details</a><a href="basic-package-single.html" class="btn btn-lg btn-primary text-uppercase">book now</a>
-                            </div>
-                        </div>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+
+        <ol class="carousel-indicators">
+            <?php for ($i = 0; $i < $slidernumber; $i++): ?>
+                <li data-target="#myCarousel" data-slide-to="<?php $i; ?>" class="<?php echo $i == 0 ? 'active' : '' ?>"></li>
+            <?php endfor; ?>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+
+            
+
+            <?php $i = 0; foreach ($sliders as $slider):?>
+                <div class="item <?php echo $i == 0 ? 'active' : ''; $i = 1;?>">
+                    <img src="<?php echo base_url('asset/image/'.$slider->name); ?>" alt="<?php echo $slider->caption; ?>" style="height: 450px;" width="460" height="345">
+                    <div class="carousel-caption">
+                        <h3><?php echo $slider->caption; ?></h3>
                     </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
+
         </div>
-        <div data-bg="<?php echo base_url('template/images/Penguins.jpg'); ?>" class="item">
-            <div class="ct-slick-inner">
-                <div class="ct-slick-content">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <h1 class="ct-textDecoration--underline ct-u-marginBottom60 ct-fw-300"><span class="ct-u-text-big text-uppercase">new</span>Get 15% off on vacations</h1>
-                                <p class="ct-u-marginBottom50">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ipsum nibh, maluit esuada a sem id, tincidunt tristique nibh. Mauris tristique velit massam, in frinui gilla turpis semper quis. Sed sagittis cursus erat, et ibendum nec.</p><a href="#packages" class="btn btn-lg btn-default btn-transparent text-uppercase">more details</a><a href="basic-package-single.html" class="btn btn-lg btn-primary text-uppercase">book now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
 </header>
