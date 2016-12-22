@@ -1,10 +1,10 @@
 <?php
 
-class Event extends MY_Admin {
+class Matchschdule extends MY_Admin {
 
     function __construct() {
         parent::__construct();
-        $this->load->model('event_model', '', TRUE);
+        $this->load->model('matchschdule_model', '', TRUE);
     }
 
     function load() {
@@ -14,48 +14,59 @@ class Event extends MY_Admin {
     function index() {
 
         $this->data['additional_csss'] = array(
-            "plugins/datatables/dataTables.bootstrap.css"
+            "plugins/datatables/dataTables.bootstrap.css",
+            "plugins/datepicker/datepicker3.css",
+            "plugins/timepicker/bootstrap-timepicker.min.css"
         );
         $this->data['additional_jss'] = array(
             "plugins/datatables/jquery.dataTables.min.js",
             "plugins/datatables/dataTables.bootstrap.min.js",
-            "script/event.js"
+            "plugins/datepicker/bootstrap-datepicker.js",
+            "plugins/timepicker/bootstrap-timepicker.min.js",
+            "script/matchschdule.js"
         );
-        $this->data['content_page'] = 'admin/event/index';
+        $this->data['content_page'] = 'admin/matchschdule/index';
         $this->load->view('admin/template', $this->data);
     }
 
     function listing() {
-        $this->data['results'] = $this->event_model->get_all_data();
-        $this->load->view("admin/event/listing", $this->data);
+        $this->data['results'] = $this->matchschdule_model->get_all_data();
+        $this->load->view("admin/matchschdule/listing", $this->data);
     }
 
     function formview($id = null) {
-        $this->data["sports"] = $this->common_model->get_all_data("sportstype");
+        $this->data['events'] = $this->common_model->get_all_data('eventtype');
+        $this->data['venues'] = $this->common_model->get_all_data('venue');
         if ($id) {
-            $this->data['result'] = $this->event_model->get_data($id);
-            $condition = array(
-                "table_name" => "'eventtype'",
-                "table_key" => "'id'",
-                "table_key_id" => $id
+            $this->data['result'] = $this->common_model->get_data("matchschdule", "*", ["id" => $id]);
+            $cond = array(
+                'table_name' => "'matchschdule'",
+                'table_key' => "'id'",
+                'table_key_id' => $id
             );
-            $this->data['images'] = $this->common_model->get_all_data("images", "*", $condition);
-            $this->load->view("admin/event/edit", $this->data);
+            $result = $this->data['images'] = $this->common_model->get_all_data("images", "*", $cond);
+            $this->load->view("admin/matchschdule/edit", $this->data);
         } else {
-            $this->load->view("admin/event/add", $this->data);
+            $this->load->view("admin/matchschdule/add", $this->data);
         }
     }
 
     function addformdb($id = null) {
-        $i = 1;
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissible">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
     <h4><i class="icon fa fa-ban"></i> Alert!</h4>', '</div>');
 
-        $this->form_validation->set_rules('Event[name]', 'Event name', 'required');
-        $this->form_validation->set_rules('Event[sports_type_id]', 'Sports type', 'required');
+        $this->form_validation->set_rules('Schdule[eventtype_id]', 'Event name', 'required');
+        $this->form_validation->set_rules('Schdule[venu_id]', 'Venue name', 'required');
+        $this->form_validation->set_rules('Schdule[title]', 'Title', 'required');
+        $this->form_validation->set_rules('Schdule[avilablestartdate]', 'Avilable start date', 'required');
+        $this->form_validation->set_rules('Schdule[avilablendndate]', 'Avilable end date', 'required');
+        $this->form_validation->set_rules('Schdule[matchdate]', 'Match date', 'required');
+        $this->form_validation->set_rules('Schdule[matchtime]', 'Match time', 'required');
+
 
         if ($this->form_validation->run()) {
+            $i = 0;
 
             $config['upload_path'] = './asset/image';
             $config['allowed_types'] = 'gif|jpg|jpeg|png';
@@ -65,50 +76,52 @@ class Event extends MY_Admin {
             $this->upload->initialize($config);
 
             if ($id) {
-                $data = $_POST["Event"];
-                $this->common_model->update("eventtype", $data, ['id' => $id]);
+                $_POST["Schdule"]["matchtime"] = date("H:i:s", strtotime($_POST["Schdule"]["matchtime"]));
+                $data = $_POST["Schdule"];
+                $this->common_model->update("matchschdule", $data, ['id' => $id]);
+
                 if (isset($_POST["Image"])) {
                     $imgdata = $_POST["Image"];
 
                     foreach ($imgdata as $key => $data) {
                         if ($this->upload->do_upload('img_' . $key)) {
                             $image_data = $this->upload->data();
-                            $newname = 'event_' . time() . ++$i . $image_data['file_ext'];
+                            $newname = 'schdule_' . time() . ++$i . $image_data['file_ext'];
                             rename($image_data['full_path'], $image_data['file_path'] . $newname);
-                            $_POST['Image']['name'] = $newname;
 
                             $imgdata = array(
-                                'table_name' => "eventtype",
+                                'table_name' => "matchschdule",
                                 'table_key' => "id",
                                 'table_key_id' => $id,
                                 'name' => $newname,
-                                'caption' => $data['caption']
+                                'caption' => isset($data['caption']) ? $data['caption'] : ''
                             );
                             $this->common_model->insert("images", $imgdata);
                         }
                     }
                 }
+
                 echo "DONE";
             } else {
-                $data = $_POST["Event"];
-                $lastid = $this->common_model->insert("eventtype", $data);
+                $_POST["Schdule"]["matchtime"] = date("H:i:s", strtotime($_POST["Schdule"]["matchtime"]));
+                $data = $_POST["Schdule"];
+                $schduleid = $this->common_model->insert("matchschdule", $data);
 
-                
-                $imgdata = isset($_POST["Image"]) ? $_POST["Image"] : '';
-                if ($imgdata != null) {
+                if (isset($_POST["Image"])) {
+                    $imgdata = $_POST["Image"];
+
                     foreach ($imgdata as $key => $data) {
                         if ($this->upload->do_upload('img_' . $key)) {
                             $image_data = $this->upload->data();
-                            $newname = 'event_' . time() . ++$i . $image_data['file_ext'];
+                            $newname = 'schdule_' . time() . ++$i . $image_data['file_ext'];
                             rename($image_data['full_path'], $image_data['file_path'] . $newname);
-                            $_POST['Image']['name'] = $newname;
 
                             $imgdata = array(
-                                'table_name' => "eventtype",
+                                'table_name' => "matchschdule",
                                 'table_key' => "id",
-                                'table_key_id' => $lastid,
+                                'table_key_id' => $schduleid,
                                 'name' => $newname,
-                                'caption' => $data['caption']
+                                'caption' => isset($data['caption']) ? $data['caption'] : ''
                             );
                             $this->common_model->insert("images", $imgdata);
                         }
@@ -124,7 +137,7 @@ class Event extends MY_Admin {
 
     public function delete($id) {
         $condition = array(
-            'table_name' => "'eventtype'",
+            'table_name' => "'matchschdule'",
             'table_key' => "'id'",
             'table_key_id' => $id
         );
@@ -137,12 +150,12 @@ class Event extends MY_Admin {
             }
             $this->common_model->delete("images", ["id" => $id]);
         }
-        $this->common_model->delete("eventtype", ["id" => $id]);
+        $this->common_model->delete("matchschdule", ["id" => $id]);
     }
 
     public function imgeform($cnt) {
-        $data["cnt"] = $cnt;
-        $this->load->view("admin/event/imgeform", $data);
+        $this->data['cnt'] = $cnt;
+        $this->load->view('admin/matchschdule/imgeform', $this->data);
     }
 
     public function deleteimage($id) {

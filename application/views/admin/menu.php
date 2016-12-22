@@ -45,7 +45,8 @@
                 </a>
                 <ul class="treeview-menu" style="display: none;">
                     <li><a href="<?php echo site_url("admin/seatsprice"); ?>"><i class="fa fa-circle-o"></i> Seats price</a></li>
-                   
+                    <li><a href="<?php echo site_url("admin/matchschdule"); ?>"><i class="fa fa-circle-o"></i>Schdule</a></li>
+
                 </ul>
             </li>
         </ul>
