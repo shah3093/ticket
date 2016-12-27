@@ -9,12 +9,20 @@
         <title><?php echo $title; ?></title>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url("template/"); ?>css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url("template/"); ?>css/style.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url("template/"); ?>css/motive/motive-tourist.css"><!--[if lt IE 9]>
-        <script src="./js/html5shiv.min.js"></script>
-        <script src="./js/respond.min.js"></script><![endif]-->
-        <script src="<?php echo base_url("template/"); ?>js/modernizr.custom.js">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url("template/"); ?>css/motive/motive-tourist.css">
+        <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Irish+Grover" rel="stylesheet"> 
+        
+         <script src="<?php echo base_url("template/"); ?>js/jquery.min.js"></script>
+
+        <script src="<?php echo base_url("template/"); ?>js/modernizr.custom.js"> </script>
+        
+        
+        <script>
+            var base_url = "<?php echo site_url(); ?>";
         </script>
-       <link rel="stylesheet" type="text/css" href="<?php echo base_url("template/"); ?>css/custom.css">
+        
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url("template/"); ?>css/custom.css">
     </head>
     <body class="cssAnimate ct-headroom--scrollUpMenu">
         <div class="ct-preloader">
@@ -33,7 +41,7 @@
 
             <?php $this->load->view('site/footer'); ?>
         </div>
-        <script src="<?php echo base_url("template/"); ?>js/jquery.min.js"></script>
+       
         <script src="<?php echo base_url("template/"); ?>js/light-gallery/js/lightGallery.js"></script>
         <script src="<?php echo base_url("template/"); ?>js/main-compiled.js"></script>
         <script src="<?php echo base_url("template/"); ?>js/magnific-popup/jquery.magnific-popup.min.js"></script>

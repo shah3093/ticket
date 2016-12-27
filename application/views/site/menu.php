@@ -13,7 +13,7 @@
     <div class="container">
         <ul class="list-inline pull-left ct-information-contact">
             <li><i class="fa fa-phone"></i>phone:<a href="tel:(012)345-6789"> (012) 345-6789</a></li>
-            <li><i class="fa fa-envelope-o"></i>mail:<a href="mailto:tourstickets@info.com"> tours&amp;tickets@info.com</a></li>
+            <li><i class="fa fa-envelope-o"></i>mail:<a href="mailto:ticketiiuc@gmail.com"> tours &amp; ticketiiuc@gmail.com</a></li>
         </ul>
         <div class="pull-right">
             <ul class="list-inline">
@@ -33,7 +33,7 @@
     <div class="container">
         <div class="navbar-header">
             <a href="<?php echo site_url('site/home'); ?>">
-                <img src="images/demo-content/guide-tour/logo.png" alt="Ticket">
+                <span style="font-family: 'Irish Grover', cursive;">Online ticket</span>
             </a>
         </div>
         <ul class="nav navbar-nav ct-navbar--fadeInUp pull-right">
